@@ -1,18 +1,15 @@
 import Link from 'next/link';
-
-const linkStyle = {
-  marginRight: 15,
-};
+import { Card, Link as Anchor } from 'evergreen-ui';
 
 const Header = () => (
-  <div>
-    <Link href="/">
-      <a style={linkStyle}>Home</a>
+  <Card marginBottom={24} padding={16} background="tint2">
+    <Link href="/" passHref>
+      <Anchor>Home</Anchor>
     </Link>
-    <Link href="/about">
-      <a style={linkStyle}>About</a>
+    <Link href="/about" passHref>
+      <Anchor marginLeft={8}>About</Anchor>
     </Link>
-  </div>
+  </Card>
 );
 
 export default Header;

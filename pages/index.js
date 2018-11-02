@@ -1,54 +1,32 @@
 import Link from 'next/link';
-import Layout from '../components/Layout';
 import fetch from 'isomorphic-unfetch';
+import { Heading, UnorderedList, ListItem, Link as Anchor } from 'evergreen-ui';
+import Layout from '../components/Layout';
 
 const PostLink = ({ show }) => (
-  <li key={show.id}>
-    <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-      <a>{show.name}</a>
+  <ListItem>
+    <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`} passHref>
+      <Anchor size={500}>{show.name}</Anchor>
     </Link>
-    <style jsx>{`
-      li {
-        list-style: none;
-        margin: 5px 0;
-      }
-
-      a {
-        text-decoration: none;
-        color: blue;
-        font-family: 'Arial';
-      }
-
-      a:hover {
-        opacity: 0.6;
-      }
-    `}</style>
-  </li>
+  </ListItem>
 );
 
 const Index = props => (
   <Layout>
-    <h1>Batman TV Shows</h1>
-    <ul>
+    <Heading size={800} marginBottom={16}>
+      TVmaze Search API results
+    </Heading>
+
+    <UnorderedList>
       {props.shows.map(({ show }) => (
         <PostLink key={show.id} show={show} />
       ))}
-    </ul>
-    <style jsx>{`
-      h1,
-      a {
-        font-family: 'Arial';
-      }
-
-      ul {
-        padding: 0;
-      }
-    `}</style>
+    </UnorderedList>
   </Layout>
 );
 
 Index.getInitialProps = async () => {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
+  const res = await fetch('https://api.tvmaze.com/search/shows?q=star+trek');
   const data = await res.json();
 
   return {
