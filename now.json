@@ -1,3 +1,4 @@
 {
-  "alias": ["nextjs-ssr-react-app"]
+  "alias": ["nextjs-ssr-react-app"],
+  "version": 2
 }
